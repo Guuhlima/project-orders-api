@@ -34,10 +34,11 @@ describe('OrderSolicitationController', () => {
         pedido: '1 hamburguer',
         observacoes: 'sem cebola',
         paymaent: 'balcao',
+        valor: 29.9,
       };
 
       const createdOrder = { id: 'id-1', ...body };
-      service.create.mockResolvedValue(createdOrder as never);
+      service.create.mockResolvedValue({ order: createdOrder } as never);
 
       const result = await controller.create(body);
 

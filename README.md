@@ -31,6 +31,32 @@
 $ npm install
 ```
 
+## Mercado Pago
+
+Para habilitar pagamento online via Mercado Pago no endpoint `POST /order-solicitation`, configure:
+
+```bash
+MERCADO_PAGO_ACCESS_TOKEN=APP_USR-...
+MERCADO_PAGO_API_URL=https://api.mercadopago.com
+MERCADO_PAGO_WEBHOOK_URL=https://seu-dominio.com/webhooks/mercado-pago
+MERCADO_PAGO_SUCCESS_URL=https://seu-front.com/pagamento/sucesso
+MERCADO_PAGO_PENDING_URL=https://seu-front.com/pagamento/pendente
+MERCADO_PAGO_FAILURE_URL=https://seu-front.com/pagamento/falha
+```
+
+Exemplo de payload com pagamento:
+
+```json
+{
+  "name": "Joao",
+  "telefone": "(11)99999-0000",
+  "pedido": "1 hamburguer",
+  "observacoes": "sem cebola",
+  "paymaent": "mercado_pago",
+  "valor": 29.9
+}
+```
+
 ## Compile and run the project
 
 ```bash

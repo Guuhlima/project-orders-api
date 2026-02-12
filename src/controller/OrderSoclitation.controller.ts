@@ -8,7 +8,7 @@ export class OrderSolicitationController {
 
   @Post()
   async create(@Body() body: CreateOrderSolicitationDTO) {
-    const order = await this.service.create(body);
-    return { message: 'Pedido criado com sucesso', order };
+    const result = await this.service.create(body);
+    return { message: 'Pedido criado com sucesso', ...result };
   }
 }
