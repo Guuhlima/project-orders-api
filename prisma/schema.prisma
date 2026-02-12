@@ -1,0 +1,20 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  schemas  = ["orders"]
+}
+
+model Orders {
+  id            String   @id @default(uuid())
+  telefone      String
+  pedido        String
+  observacoes   String
+  paymaent      String
+
+  @@map("orders")
+  @@schema("orders")
+}
