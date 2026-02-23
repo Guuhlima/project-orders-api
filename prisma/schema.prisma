@@ -10,10 +10,12 @@ datasource db {
 
 model Orders {
   id            String   @id @default(uuid())
+  nome          String
   telefone      String
   pedido        String
   observacoes   String
   paymaent      String
+  createdAt     DateTime @default(now())
 
   @@map("orders")
   @@schema("orders")

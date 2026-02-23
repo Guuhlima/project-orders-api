@@ -20,8 +20,10 @@ export class OrderSolicitationService {
       data: {
         telefone: data.telefone,
         pedido: data.pedido,
+        nome: data.nome,
         observacoes: data.observacoes || '',
         paymaent: data.paymaent,
+        createdAt: new Date(),
       },
     });
 
@@ -33,7 +35,7 @@ export class OrderSolicitationService {
       orderId: order.id,
       title: data.pedido,
       unitPrice: normalizedAmount!,
-      payerName: data.name,
+      payerName: data.nome,
     });
 
     return {
@@ -46,6 +48,12 @@ export class OrderSolicitationService {
         sandboxCheckoutUrl: preference.sandbox_init_point,
       },
     };
+  }
+
+  async findAll() {
+    const order = await this.prisma.orders.findMany();
+
+    return { order };
   }
 
   private normalizeAmount(value: number | string | undefined): number {
