@@ -4,7 +4,7 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { randomUUID } from 'node:crypto';
-import { CreateCheckoutPreferenceInput, MercadoPagoPreferenceResponse } from 'src/types/MercadoPago.types';
+import { CreateCheckoutPreferenceInput, MercadoPagoPreferenceResponse } from 'src/orders/types/MercadoPago.types';
 
 @Injectable()
 export class MercadoPagoService {

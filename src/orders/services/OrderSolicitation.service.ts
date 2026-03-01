@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { PrismaService } from '../lib/prisma';
+import { PrismaService } from '../../lib/prisma';
 import { CreateOrderSolicitationDTO } from '../types/OrderSolicitation.types';
 import { MercadoPagoService } from '../integrations/mercado-pago.service';
 
