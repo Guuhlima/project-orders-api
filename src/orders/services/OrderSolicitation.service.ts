@@ -2,12 +2,14 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { PrismaService } from '../../lib/prisma';
 import { CreateOrderSolicitationDTO } from '../types/OrderSolicitation.types';
 import { MercadoPagoService } from '../integrations/mercado-pago.service';
+import { OrdersGateway } from '../gateway/orders.gateway';
 
 @Injectable()
 export class OrderSolicitationService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly mercadoPagoService: MercadoPagoService,
+    private readonly ordersGateway: OrdersGateway,
   ) {}
 
   async create(data: CreateOrderSolicitationDTO) {
@@ -26,6 +28,8 @@ export class OrderSolicitationService {
         createdAt: new Date(),
       },
     });
+
+    this.ordersGateway.emitNewOrder(order);
 
     if (data.paymaent === 'balcao') {
       return { order };
