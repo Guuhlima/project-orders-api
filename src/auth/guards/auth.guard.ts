@@ -1,4 +1,3 @@
-// src/auth/guards/auth.guard.ts
 import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from '../services/auth.service';
 
