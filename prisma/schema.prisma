@@ -4,12 +4,12 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  schemas  = ["orders"]
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
 }
 
 model Orders {
-  id            String   @id @default(uuid())
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
   nome          String
   telefone      String
   pedido        String
@@ -18,28 +18,25 @@ model Orders {
   createdAt     DateTime @default(now())
 
   @@map("orders")
-  @@schema("orders")
 }
 
 model User {
-  id            String @id @default(uuid())
+  id            String  @id @default(auto()) @map("_id") @db.ObjectId
   name          String
   password      String
   active        Boolean @default(true)
 
   @@map("users")
-  @@schema("orders")
 }
 
 model Products {
-  id            String @id @default(uuid())
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
   name          String
-  price         Decimal @db.Decimal(10, 2)
+  price         Float
   description   String?
   isActive      Boolean
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
   @@map("products")
-  @@schema("orders")
 }
