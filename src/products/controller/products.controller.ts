@@ -4,10 +4,10 @@ import { CreateProductDTO, UpdateProductDTO } from '../types/products.types';
 import { AuthGuard } from 'src/auth/guards/auth.guard';
 
 @Controller('products')
-@UseGuards(AuthGuard)
 export class ProductsController {
     constructor(private readonly service: ProductsService) {}
 
+    @UseGuards(AuthGuard)
     @Post()
     async create(@Body() body: CreateProductDTO) {
         const result = await this.service.create(body);
@@ -20,18 +20,21 @@ export class ProductsController {
         return { message: "Produtos encontrados", ...result }
     }
 
+    @UseGuards(AuthGuard)
     @Get(':id') 
     async findById(@Param('id') id: string) {
         const result = await this.service.findById(id);
         return { message: 'Produto encontrado com sucesso', ...result };
     }
 
+    @UseGuards(AuthGuard)
     @Delete('id')
     async delete(@Param('id') id: string) {
         const result = await this.service.delete(id);
         return { message: 'Produto removido com sucesso', ...result };
     }
 
+    @UseGuards(AuthGuard)
     @Patch('id')
     async update(@Param('id') id: string, @Body() body: UpdateProductDTO) {
         const result = await this.service.update(id, body);
